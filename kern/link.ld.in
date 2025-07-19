@@ -1,0 +1,29 @@
+#include <kern/platform.h>
+
+ENTRY(start)
+
+MEMORY {
+	ram (rwx) : ORIGIN = PLATFORM_PHY_LOAD_START, LENGTH = PLATFORM_PHYSTOP - PLATFORM_PHY_LOAD_START
+}
+
+SECTIONS {
+	.text : {
+		*(.text)
+	} >ram
+
+	.data : {
+		*(.data)
+	} >ram
+
+	.rodata : {
+		*(.rodata)
+	} >ram
+
+	.bss : {
+		*(.bss)
+	} >ram
+
+	/DISCARD/ : {
+		*(.comment)
+	}
+}
