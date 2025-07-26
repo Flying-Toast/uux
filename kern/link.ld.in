@@ -1,0 +1,32 @@
+#include <kern/platform.h>
+
+ENTRY(start)
+
+SECTIONS {
+	. = LOAD_START;
+
+	.text : {
+		*(.entry)
+		*(.text)
+	}
+
+	.data : {
+		*(.data)
+	}
+
+	.rodata : {
+		*(.rodata)
+	}
+
+	.bss : {
+		*(.bss)
+	}
+
+	/DISCARD/ : {
+		*(.comment)
+	}
+
+	. = ALIGN(PAGESIZE);
+	__phy_load_end = .;
+	. = ASSERT(. < PHYSTOP, "kernel too large");
+}
