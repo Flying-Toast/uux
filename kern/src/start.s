@@ -1,9 +1,6 @@
 .section .entry, "ax"
 .globl start
 start:
-	// TODO: Turn on high vectors at the same time we turn
-	// TODO: on virtual memory, and map physical page 0 to
-	// TODO: the high vectors location.
 	// Install exception vector table at 0x00000000
 	mov r0, #0
 	adr r1, __start_vectors
@@ -16,6 +13,9 @@ start:
 	adr sp, bootstrap_stack
 	b main
 
+// XXX XXX XXX XXX: CAREFUL WHEN IMPLEMENTING THIS!
+// XXX XXX XXX XXX: any b/bl will be pc relative from the definition here,
+// XXX XXX XXX XXX: not from the installed location at 0x00000000 :/
 __start_vectors:
 // 0x00000000: reset
 	0: b 0b // TODO
