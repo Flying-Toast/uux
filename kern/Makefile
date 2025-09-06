@@ -11,7 +11,7 @@ CPP = clang-cpp
 CFLAGS = --target=arm-unknown-none-eabi -mcpu=arm1176jzf-s -mabi=aapcs \
 	-ffreestanding -nostdlib -nostdinc -fno-builtin -fno-common \
 	-Iinclude -std=c11 -Wall -Wextra -Wpedantic \
-	-Wno-unused-command-line-argument -g
+	-Wno-unused-command-line-argument -g -O1
 
 obj = \
 	src/emerg.o \
